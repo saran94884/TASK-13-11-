@@ -1,0 +1,33 @@
+public class InvalidAgeException extends Exception {
+    public InvalidAgeException() {
+        super("Invalid age. Age must be 18 or older.");
+    }
+}
+
+
+
+import java.util.Scanner;
+
+public class AgeValidation {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            System.out.print("Enter your age: ");
+            int age = scanner.nextInt();
+
+            if (age < 18) {
+                throw new InvalidAgeException();
+            }
+
+            // Continue with the program if age is valid
+            System.out.println("Age is valid. You can proceed.");
+        } catch (InvalidAgeException e) {
+            System.out.println("Error: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred.");
+        }
+
+        scanner.close();
+    }
+}
