@@ -1,0 +1,40 @@
+public class IncorrectPasswordException extends Exception {
+    public IncorrectPasswordException() {
+        super("Incorrect password. Please try again.");
+    }
+}
+
+import java.util.Scanner;
+
+public class LoginSystem {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String expectedPassword = "secretPassword"; // Replace with your actual expected password
+
+        try {
+            System.out.print("Enter your password: ");
+            String enteredPassword = scanner.nextLine();
+
+            if (!enteredPassword.equals(expectedPassword)) {
+                throw new IncorrectPasswordException();
+            }
+
+            // Successful login code here
+            System.out.println("Login successful!");
+        } catch (IncorrectPasswordException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        scanner.close();
+    }
+}
+
+
+
+
+
+We create an instance of the IncorrectPasswordException and throw it when the entered password does not match the expected password.
+
+In the catch block, we handle the custom exception and display an error message to inform the user about the incorrect password.
+
+If the login is successful (i.e., the entered password matches the expected password), you can place the successful login logic inside the try block.
